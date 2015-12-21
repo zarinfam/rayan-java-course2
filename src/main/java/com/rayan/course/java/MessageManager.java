@@ -6,7 +6,7 @@ package com.rayan.course.java;
 public class MessageManager {
 
     public String getHelloMessage(){
-        return "Hello world!";
+        return "Hello World";
     }
 
 }
