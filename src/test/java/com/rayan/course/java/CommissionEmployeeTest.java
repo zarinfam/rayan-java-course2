@@ -33,7 +33,20 @@ public class CommissionEmployeeTest {
         );
 
         assertThat(employee.earnings()).isEqualTo(20000);
-;
+
+    }
+
+    @Test
+    public void testEquality_CommissionEmployee() {
+        CommissionEmployee employee1 = new CommissionEmployee(
+                "Ali", "Ahmadi", "111111111", 100000, 0.2
+        );
+
+        CommissionEmployee employee1Copy = new CommissionEmployee(
+                "Ali", "Ahmadi", "111111111", 100000, 0.2
+        );
+
+        assertThat(employee1.equals(employee1Copy)).isEqualTo(true);
 
     }
 }

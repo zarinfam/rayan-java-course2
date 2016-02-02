@@ -4,11 +4,14 @@ package com.rayan.course.java.employee;
  * Created by saeed on 2/1/16.
  */
 public class CommissionEmployee extends Object {
-    private final String firstName;
-    private final String lastName;
-    private final String socialSecurityNumber;
+    private String firstName;
+    private String lastName;
+    private String socialSecurityNumber;
     private double grossSales; // gross weekly sales
     private double commissionRate; // commission percentage
+
+    public CommissionEmployee() {
+    }
 
     // five-argument constructor
     public CommissionEmployee(String firstName, String lastName,
@@ -85,5 +88,20 @@ public class CommissionEmployee extends Object {
 
                 "gross sales", grossSales,
                 "commission rate", commissionRate);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o == null) {
+            return false;
+        }
+
+        if(!(o instanceof CommissionEmployee) ) {
+            return false;
+        }
+
+        CommissionEmployee other = (CommissionEmployee) o;
+
+        return this.getSocialSecurityNumber() == other.getSocialSecurityNumber();
     }
 } // end class CommissionEmployee

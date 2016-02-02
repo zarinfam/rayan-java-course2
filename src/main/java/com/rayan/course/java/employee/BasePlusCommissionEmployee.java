@@ -51,4 +51,6 @@ public class BasePlusCommissionEmployee extends CommissionEmployee {
                 "gross sales", getGrossSales(), "commission rate", getCommissionRate(),
                 "base salary", baseSalary);
     }
+
+
 }// end class BasePlusCommissionEmployee
