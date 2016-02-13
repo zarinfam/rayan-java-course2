@@ -1,7 +1,13 @@
 package com.rayan.course.java;
 
+import com.rayan.course.java.employee.BasePlusCommissionEmployee;
 import com.rayan.course.java.employee.CommissionEmployee;
+import com.rayan.course.java.employee.Employee;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.fest.assertions.api.Assertions.assertThat;
 
@@ -38,15 +44,22 @@ public class CommissionEmployeeTest {
 
     @Test
     public void testEquality_CommissionEmployee() {
-        CommissionEmployee employee1 = new CommissionEmployee(
-                "Ali", "Ahmadi", "111111111", 100000, 0.2
-        );
+        List<Employee> employeeList = new ArrayList<Employee>(Arrays.asList(
+                new CommissionEmployee("Ali", "Ahmadi", "111111111", 100000, 0.2)
+                ,new BasePlusCommissionEmployee("Mahbobeh", "Ahmadi", "111111111", 100000, 0.2, 200000)
+                ,new CommissionEmployee("Hossein", "Ahmadi", "111111111", 100000, 0.2)
+        ));
 
-        CommissionEmployee employee1Copy = new CommissionEmployee(
-                "Ali", "Ahmadi", "111111111", 100000, 0.2
-        );
+        for (Employee employee: employeeList){
 
-        assertThat(employee1.equals(employee1Copy)).isEqualTo(true);
+            if (employee instanceof BasePlusCommissionEmployee){
+//                ((BasePlusCommissionEmployee)employee).setBaseSalary();
+            }
+
+            System.out.println(employee.earnings());
+        }
+
+//        assertThat(employee1.equals(employee1Copy)).isEqualTo(true);
 
     }
 }
