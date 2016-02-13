@@ -3,7 +3,7 @@ package com.rayan.course.java.employee;
 /**
  * Created by saeed on 2/13/16.
  */
-public abstract class Employee {
+public abstract class Employee implements Payable{
     private String firstName;
     private String lastName;
     private String socialSecurityNumber;
@@ -40,4 +40,11 @@ public abstract class Employee {
     public void setSocialSecurityNumber(String socialSecurityNumber) {
         this.socialSecurityNumber = socialSecurityNumber;
     }
+
+    @Override
+    public double getPaymentAmount() {
+        return earnings();
+    }
+
+
 }

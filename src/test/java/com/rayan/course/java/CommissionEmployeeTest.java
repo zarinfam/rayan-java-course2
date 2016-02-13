@@ -1,8 +1,6 @@
 package com.rayan.course.java;
 
-import com.rayan.course.java.employee.BasePlusCommissionEmployee;
-import com.rayan.course.java.employee.CommissionEmployee;
-import com.rayan.course.java.employee.Employee;
+import com.rayan.course.java.employee.*;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -16,7 +14,7 @@ import static org.fest.assertions.api.Assertions.assertThat;
  */
 public class CommissionEmployeeTest {
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void test_CommissionEmployee_invalidGrossSalesConstructor() {
         CommissionEmployee employee = new CommissionEmployee(
                 "Ali", "Ahmadi", "111111111", -2, 0.2
@@ -24,7 +22,7 @@ public class CommissionEmployeeTest {
 
     }
 
-    @Test(expected=IllegalArgumentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void test_CommissionEmployee_invalidRateConstructor() {
         CommissionEmployee employee = new CommissionEmployee(
                 "Ali", "Ahmadi", "111111111", 200000, -0.1
@@ -44,22 +42,16 @@ public class CommissionEmployeeTest {
 
     @Test
     public void testEquality_CommissionEmployee() {
-        List<Employee> employeeList = new ArrayList<Employee>(Arrays.asList(
-                new CommissionEmployee("Ali", "Ahmadi", "111111111", 100000, 0.2)
-                ,new BasePlusCommissionEmployee("Mahbobeh", "Ahmadi", "111111111", 100000, 0.2, 200000)
-                ,new CommissionEmployee("Hossein", "Ahmadi", "111111111", 100000, 0.2)
+        List<Payable> payableList = new ArrayList<>(Arrays.asList(
+                new CommissionEmployee("Ali", "Ahmadi", "111111111", 100000, 0.2)//20
+                , new BasePlusCommissionEmployee("Mahbobeh", "Ahmadi", "111111111", 100000, 0.2, 200000)//220
+                , new CommissionEmployee("Hossein", "Ahmadi", "111111111", 100000, 0.2)//20
+                , new Invoice("table", "table", 9, 50000)//450
         ));
 
-        for (Employee employee: employeeList){
-
-            if (employee instanceof BasePlusCommissionEmployee){
-//                ((BasePlusCommissionEmployee)employee).setBaseSalary();
-            }
-
-            System.out.println(employee.earnings());
-        }
-
-//        assertThat(employee1.equals(employee1Copy)).isEqualTo(true);
+        assertThat(payableList.stream()
+                .map(p -> (int)(p.getPaymentAmount())).reduce(Integer::sum)
+                .orElse(0)).isEqualTo(710000);
 
     }
 }
