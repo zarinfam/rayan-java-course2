@@ -49,6 +49,14 @@ public class CommissionEmployeeTest {
                 , new Invoice("table", "table", 9, 50000)//450
         ));
 
+        long totalCosts = 0;
+
+        for (Payable payable : payableList){
+            totalCosts += (long) payable.getPaymentAmount();
+        }
+
+        assertThat(totalCosts).isEqualTo(710000l);
+
         assertThat(payableList.stream()
                 .map(p -> (int)(p.getPaymentAmount())).reduce(Integer::sum)
                 .orElse(0)).isEqualTo(710000);
